@@ -8,8 +8,6 @@ createDeck()
 shuffle()
 deal()
 
-
-
 function createDeck() {
     suits.forEach(suit => {
         values.forEach(value => {
@@ -35,11 +33,16 @@ function deal() {
     dealerHand.push(deck.pop())
     playerHand.push(deck.pop())
     dealerHand.push(deck.pop())
-    console.log(`Player: ${playerHand[0]}, ${playerHand[1]}`)
-    console.log(`dealer: ${dealerHand[0]}, ${dealerHand[1]}`)
-    console.log(`remaining cards: ${deck.length}`)
+    console.log(`Player: ${playerHand[0]} , ${playerHand[1]}`)
+    console.log(`Dealer: ${dealerHand[0]} , ${dealerHand[1]}`)
+    console.log(`Remaining cards: ${deck.length}`)
 
 }
 
+function hit() {
+    let newCard = playerHand.push(deck.pop())
+    console.log(`Your new card is : ${playerHand[newCard - 1]}`)
+    console.log(`Player hand: ${playerHand}`)
+}
 
 
