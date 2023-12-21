@@ -72,17 +72,6 @@ function checkValue() {
     return console.log(`current hand is ${playerValue}`)
 }
 
-//
-
-function bust() {
-    if (playerValue > 21) {
-        console.log('bust')
-    } else if (dealerValue > 21) {
-        console.log('bust')
-    } else if (dealerValue > 21 && playerValue > 21)
-        console.log('bust')
-}
-
 function choosingWinner(){ 
     if (playerValue === dealerValue) {
         console.log('push')
@@ -93,17 +82,16 @@ function choosingWinner(){
     } else if (playerValue > 21) {
         console.log('bust, dealer wins')
     } else if (dealerValue > 21) {
-        console.log('bust, dealer wins')
+        console.log('bust, player wins')
     } else if (dealervalue > 21 && playerValue > 21 ) {
-        console.log('Player and dealer bust, its a push')
+        console.log('bust, dealer wins')
     }
 }
 
 function dealerHit() {
-    if (dealerHand <= 16) {
+    if (dealerValue <= 16) {
         dealerHand.push(deck.pop())
     } if (dealerValue > 21) {
         console.log('bust') 
-        bust()
     }
 }
