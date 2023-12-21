@@ -3,11 +3,17 @@ const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'
 const deck = []
 const playerHand = []
 const dealerHand = []
+let winner = false
+let tie = false
+let lose = false
 let playerValue = 0
+let dealerValue = 0
 
 createDeck()
 shuffle()
 deal()
+choosingWinner()
+console.log(deck)
 
 
 function createDeck() {
@@ -37,13 +43,16 @@ function deal() {
     console.log(`Player: ${playerHand[0]} , ${playerHand[1]}`)
     console.log(`Dealer: ${dealerHand[0]} , ${dealerHand[1]}`)
     console.log(`Remaining cards: ${deck.length}`)
-
 }
 
 function hit() {
     let newCard = playerHand.push(deck.pop())
     console.log(`Your new card is : ${playerHand[newCard - 1]}`)
     console.log(`Player hand: ${playerHand}`)
+    console.log(`Player hand: ${dealerHand}`)
+
+    checkValue()
+    bust()
 }
 
 function checkValue() {
@@ -54,20 +63,47 @@ function checkValue() {
 
         if (card.includes('J') || card.includes('Q') || card.includes('K') || card.includes('10')) {
             playerValue += 10
-        }
-        if (card.includes('A')) {
-            if (playerValue <= 21) {
-                playerValue += 11
-            } else {
-                playerValue += 1
-            }
-        }
-        if (number >= 2 && number <= 9) {
+        } else if (number >= 2 && number <= 9) {
             playerValue += number
+        } else if (card.includes('A')) {
+            playerValue += (playerValue + 11 > 21) ? 1 : 11
         }
     })
+    return console.log(`current hand is ${playerValue}`)
 }
 
-console.log(deck)
+//
 
+function bust() {
+    if (playerValue > 21) {
+        console.log('bust')
+    } else if (dealerValue > 21) {
+        console.log('bust')
+    } else if (dealerValue > 21 && playerValue > 21)
+        console.log('bust')
+}
 
+function choosingWinner(){ 
+    if (playerValue === dealerValue) {
+        console.log('push')
+    } else if (playerValue > dealerValue && playerValue <= 21){
+        console.log('player wins')
+    } else if (dealerValue > playerValue && dealerValue <= 21) {
+        console.log('dealer wins ')
+    } else if (playerValue > 21) {
+        console.log('bust, dealer wins')
+    } else if (dealerValue > 21) {
+        console.log('bust, dealer wins')
+    } else if (dealervalue > 21 && playerValue > 21 ) {
+        console.log('Player and dealer bust, its a push')
+    }
+}
+
+function dealerHit() {
+    if (dealerHand <= 16) {
+        dealerHand.push(deck.pop())
+    } if (dealerValue > 21) {
+        console.log('bust') 
+        bust()
+    }
+}
