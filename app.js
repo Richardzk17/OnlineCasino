@@ -1,20 +1,20 @@
+
+
+
+
 const suits = ['Clubs', 'Diamonds', 'Spades', 'Hearts']
-const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
-const deck = []
+const values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
+
+
+
+let deck = []
 const playerHand = []
 const dealerHand = []
-let winner = false
-let tie = false
-let lose = false
-let playerValue = 0
-let dealerValue = 0
+let winner
+let playerValue
+let dealerValue
 
-createDeck()
-shuffle()
-deal()
-choosingWinner()
-console.log(deck)
-
+startGame()
 
 function createDeck() {
     suits.forEach(suit => {
@@ -31,9 +31,8 @@ function shuffle() {
         deck[i] = deck[randomCard]
         deck[randomCard] = temporaryCard
     }
-    return deck
+    return
 }
-
 
 function deal() {
     playerHand.push(deck.pop())
@@ -42,56 +41,71 @@ function deal() {
     dealerHand.push(deck.pop())
     console.log(`Player: ${playerHand[0]} , ${playerHand[1]}`)
     console.log(`Dealer: ${dealerHand[0]} , ${dealerHand[1]}`)
-    console.log(`Remaining cards: ${deck.length}`)
+
+    let player = checkValue(playerHand)
+    let dealer = checkValue(dealerHand)
+
+    if (dealer < 16) {
+        hit(dealerHand, 'Dealer Hand')
+    }
 }
 
-function hit() {
-    let newCard = playerHand.push(deck.pop())
-    console.log(`Your new card is : ${playerHand[newCard - 1]}`)
-    console.log(`Player hand: ${playerHand}`)
-    console.log(`Player hand: ${dealerHand}`)
 
-    checkValue()
-    bust()
+
+function startGame() {
+    createDeck()
+    shuffle()
+    deal()
 }
 
-function checkValue() {
-    playerValue = 0
+function hit(userHit, actualUser) {
+    let newCard = userHit.push(deck.pop())
+    console.log(`Your new card is : ${userHit[newCard - 1]}`)
+    console.log(`${actualUser} ${userHit}`)
+    return newCard
+}
 
-    playerHand.forEach((card) => {
-        let number = parseInt(card[0])
+function checkValue(userHand) {
+    let userValue = 0
 
-        if (card.includes('J') || card.includes('Q') || card.includes('K') || card.includes('10')) {
-            playerValue += 10
-        } else if (number >= 2 && number <= 9) {
-            playerValue += number
-        } else if (card.includes('A')) {
-            playerValue += (playerValue + 11 > 21) ? 1 : 11
+    userHand?.forEach((card) => {
+        let cardOrNum = card.split(" ")?.[0]
+
+        if (cardOrNum === 'Q' || cardOrNum === 'J' || cardOrNum === 'K') {
+            userValue += 10
+        } 
+        
+        if (Number(cardOrNum) >= 2 && Number(cardOrNum) <= 10) {
+            userValue += Number(cardOrNum)
+        } 
+        
+        if (cardOrNum === 'A') {
+            userValue += userValue >= 11 ? 10 : 1
         }
     })
-    return console.log(`current hand is ${playerValue}`)
+
+    return userValue
 }
 
-function choosingWinner(){ 
-    if (playerValue === dealerValue) {
-        console.log('push')
-    } else if (playerValue > dealerValue && playerValue <= 21){
-        console.log('player wins')
-    } else if (dealerValue > playerValue && dealerValue <= 21) {
-        console.log('dealer wins ')
-    } else if (playerValue > 21) {
-        console.log('bust, dealer wins')
-    } else if (dealerValue > 21) {
-        console.log('bust, player wins')
-    } else if (dealervalue > 21 && playerValue > 21 ) {
-        console.log('bust, dealer wins')
+function choosingWinner(player, dealer) {
+    if (player > dealer && player <= 21) {
+        console.log('Player has won')
+    }
+
+    if (dealer > player && dealer <= 21) {
+        console.log('Dealer has won')
+    }
+
+    if (dealer === 21 && player !== 21) {
+        console.log('Dealer won')
+    }
+
+    if (player === 21 && dealer !== 21) {
+        console.log('Player won')
+    }
+
+    if (dealer === player) {
+        console.log('Draw')
     }
 }
 
-function dealerHit() {
-    if (dealerValue <= 16) {
-        dealerHand.push(deck.pop())
-    } if (dealerValue > 21) {
-        console.log('bust') 
-    }
-}
