@@ -22,8 +22,12 @@ function startGame() {
     createDeck();
     shuffle()
     deal()
-    userPrompt()
 }
+
+
+eventBtn = document.querySelector('.buttons')
+
+eventBtn.addEventListener('click', handleClick)
 
 
 
@@ -47,7 +51,7 @@ function checkValue(user) {
                 user.value += 11
             }
             else {
-                user.value += 1;
+                user.value += 1
             }
         }
 
@@ -56,7 +60,7 @@ function checkValue(user) {
         }
 
         if (number >= 2 && number <= 9) {
-            user.value += number;
+            user.value += number
         }
 
 
@@ -68,7 +72,7 @@ function checkValue(user) {
 
 function shuffle() {
     for (let i = 0; i < deck.length; i++) {
-        let randomIndex = Math.floor(Math.random() * deck.length);
+        let randomIndex = Math.floor(Math.random() * deck.length)
         let temp = deck[i];
         deck[i] = deck[randomIndex];
         deck[randomIndex] = temp;
@@ -81,10 +85,24 @@ function deal() {
     dealer.hand.push(deck.pop())
     player.hand.push(deck.pop())
     dealer.hand.push(deck.pop())
-    console.log(`P : ${player.hand}`);
+    console.log(`P : ${player.hand}`)
     console.log(`D : ${dealer.hand[0]} , other card is Hidden`)
     console.log(`Remaining cards : ${deck.length}`)
     checkValue(player)
+    checkValue(dealer)
+    checkBlackJack(player,dealer)
+}
+
+function checkBlackJack(player,dealer) {
+    if (player.value === 21 && dealer.value !== 21) {
+        console.log("BlackJack Player Won 1.5")
+    } else if (dealer.value === 21 && player.value !== 21 ) {
+        console.log("BlackJack Dealer")
+
+    } else if (dealer.value === 21 && player.value === 21) {
+        console.log("BJ Push")
+    }
+
 }
 
 function hit() {
@@ -114,28 +132,30 @@ function choosingWinner(player, dealer) {
     else if (dealer === player) {
         console.log('Push')
     }
+    else if (dealer > 21 && player < 21) {
+        console.log('Dealer busted')
+    }
 
 }
 
-function userPrompt() {
-    let x = prompt('(S)tand     (H)it     (X)plit     (D)ouble ')
+function handleClick(e) {
+    let buttonClicked = e.target.id
 
-    if (x === 'S') {
+    if ('stand' === buttonClicked) {
         console.log('Player Stands')
         dealerTurn()
     }
-    if (x === 'H') {
+    if ('hit' === buttonClicked) {
         hit()
-        userPrompt()
+
     }
-    if (x === 'D') {
+    if ('double' === buttonClicked) {
         console.log('User doubled')
         hit()
         dealerTurn()
     }
-    if ( x === 'U')
+    if ('surrender' === buttonClicked)
         console.log('player surrendered returned half the money')
-        dealerTurn()
 }
 
 function dealerTurn() {
@@ -144,14 +164,22 @@ function dealerTurn() {
         dealer.hand.push(deck.pop())
         checkValue(dealer)
     }
-    choosingWinner(player.value, dealer.value)
+    return choosingWinner(player.value, dealer.value)
+
 }
 
+// let dealerbox = document.querySelector('.dealer')
 
 
+// let img = document.createElement('img')
+// img.src = 'https://www.hollywoodreporter.com/wp-content/uploads/2012/12/img_logo_blue.jpg'
+// img.style.height = '100px'
+// img.style.width = '100px'
 
 
-
+// function handleClick() {
+//     dealerbox.append(img)
+// }
 
 
 
