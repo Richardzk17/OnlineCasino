@@ -90,13 +90,13 @@ function deal() {
     console.log(`Remaining cards : ${deck.length}`)
     checkValue(player)
     checkValue(dealer)
-    checkBlackJack(player,dealer)
+    checkBlackJack(player, dealer)
 }
 
-function checkBlackJack(player,dealer) {
+function checkBlackJack(player, dealer) {
     if (player.value === 21 && dealer.value !== 21) {
         console.log("BlackJack Player Won 1.5")
-    } else if (dealer.value === 21 && player.value !== 21 ) {
+    } else if (dealer.value === 21 && player.value !== 21) {
         console.log("BlackJack Dealer")
 
     } else if (dealer.value === 21 && player.value === 21) {
@@ -113,6 +113,7 @@ function hit() {
 }
 
 function choosingWinner(player, dealer) {
+    ø
     if (player > dealer && player <= 21) {
         console.log('Player has won')
     }
@@ -168,144 +169,25 @@ function dealerTurn() {
 
 }
 
-// let dealerbox = document.querySelector('.dealer')
 
+// testing img rendering 
+function getImage(user) {
+    let img = document.createElement('img')
+    let img2 = document.createElement('img')
+    img.src = `images/${user.hand[0]}.svg`
+    img2.src = `images/${user.hand[1]}.svg`
+    img.classList.add('card')
+    img2.classList.add('card')
 
-// let img = document.createElement('img')
-// img.src = 'https://www.hollywoodreporter.com/wp-content/uploads/2012/12/img_logo_blue.jpg'
-// img.style.height = '100px'
-// img.style.width = '100px'
+    if (user === dealer) {
+        dealerbox.append(img)
+        dealerbox.append(img2)
+    }
+    if (user === player) {
+        playerbox.append(img)
+        playerbox.append(img2)
+    }
+}
 
-
-// function handleClick() {
-//     dealerbox.append(img)
-// }
-
-
-
-
-
-// const suits = ['Clubs', 'Diamonds', 'Spades', 'Hearts']
-// const values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
-
-
-
-// let deck = []
-// const playerHand = []
-// const dealerHand = []
-// let winner, player, dealer
-
-// startGame()
-
-// function createDeck() {
-//     suits.forEach(suit => {
-//         values.forEach(value => {
-//             deck.push(`${value} ${suit}`)
-//         })
-//     })
-// }
-
-// function shuffle() {
-//     for (let i = deck.length - 1; i > 0; i--) {
-//         let randomCard = Math.floor(Math.random() * deck.length)
-//         let temporaryCard = deck[i]
-//         deck[i] = deck[randomCard]
-//         deck[randomCard] = temporaryCard
-//     }
-//     return
-// }
-
-// function deal() {
-//     playerHand.push(deck.pop())
-//     dealerHand.push(deck.pop())
-//     playerHand.push(deck.pop())
-//     dealerHand.push(deck.pop())
-//     console.log(`Player: ${playerHand[0]} , ${playerHand[1]}`)
-//     console.log(`Dealer: ${dealerHand[0]} , ${dealerHand[1]}`)
-
-//     player = checkValue(playerHand)
-//     dealer = checkValue(dealerHand)
-
-
-//     userPrompt()
-
-
-// }
-
-
-
-// function startGame() {
-//     createDeck()
-//     shuffle()
-//     deal()
-// }
-
-// function hit(userHit, actualUser) {
-//     console.log(userHit)
-
-//     let newCard = userHit.push(deck.pop())
-//     console.log(`Your new card is : ${userHit[newCard - 1]}`)
-//     console.log(`${actualUser} ${userHit}`)
-//     return newCard
-// }
-
-// function checkValue(userHand) {
-//     let userValue = 0
-
-//     userHand?.forEach((card) => {
-//         let cardOrNum = card.split(" ")?.[0]
-
-//         if (cardOrNum === 'Q' || cardOrNum === 'J' || cardOrNum === 'K') {
-//             userValue += 10
-//         }
-
-//         if (Number(cardOrNum) >= 2 && Number(cardOrNum) <= 10) {
-//             userValue += Number(cardOrNum)
-//         }
-
-//         if (cardOrNum === 'A') {
-//             userValue += userValue >= 11 ? 10 : 1
-//         }
-//     })
-
-//     return userValue
-// }
-
-// function choosingWinner(player, dealer) {
-//     if (player > dealer && player <= 21) {
-//         console.log('Player has won')
-//     }
-
-//     else if (dealer > player && dealer <= 21) {
-//         console.log('Dealer has won')
-//     }
-
-//     else if (dealer === 21 && player !== 21) {
-//         console.log('Dealer won')
-//     }
-
-//     else if (player === 21 && dealer !== 21) {
-//         console.log('Player won')
-//     }
-
-//     else if (dealer === player) {
-//         console.log('Draw')
-//     }
-
-// }
-
-// function userPrompt() {
-//     let x = prompt('(S)tand     (H)it     (X)plit     (D)ouble')
-
-//     if (x === 'S') {
-//         console.log('User Stands')
-//         if (dealer < 16) {
-//             hit(dealerHand, 'Dealer Hand')
-//         }
-//         choosingWinner(player, dealer)
-//     }
-//     if (x === 'H') {
-//         hit(playerHand, 'Player: ')
-//         userPrompt()
-//     }
-// }
+let dealerbox = document.querySelector('.dealer')
+let playerbox = document.querySelector('.player')
