@@ -113,7 +113,6 @@ function hit() {
 }
 
 function choosingWinner(player, dealer) {
-    ø
     if (player > dealer && player <= 21) {
         console.log('Player has won')
     }
