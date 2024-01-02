@@ -10,6 +10,8 @@ body {
 }
 
 .bar {
+    display: flex;
+    justify-content: space-between;
     border: black solid 2px;
     height: 75px;
     background-color: #006400;
@@ -92,6 +94,19 @@ body {
     position: relative;
     top: 1px;
 
+}
+
+.message {
+    color: yellow;
+    border: solid yellow 2px;
+    height: 30px;
+    width: 70px;
+    font-size: 20px;
+    text-align: center;
+    background-color: #000000;
+    margin-right: 20px;
+    margin-top: 20px;
+    letter-spacing: 1px;
 }
 
 /* https://www.bestcssbuttongenerator.com/#/28 */

@@ -1,6 +1,12 @@
+messageEl = document.getElementById('message')
+
+
+
 const suits = ['Hearts', 'Spades', 'Diamonds', 'Clubs']
 const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 const deck = [];
+let bankRoll = 100
+let credit = 0
 // const playerHand = [];
 // const dealerHand = [];
 // let playerValue = 0;
@@ -16,10 +22,11 @@ let dealer = {
     value: 0,
     hand: []
 }
+startGame()
 
 
 function startGame() {
-    createDeck();
+    createDeck()
     shuffle()
     deal()
 }
@@ -28,7 +35,6 @@ function startGame() {
 eventBtn = document.querySelector('.buttons')
 
 eventBtn.addEventListener('click', handleClick)
-
 
 
 
@@ -91,16 +97,23 @@ function deal() {
     checkValue(player)
     checkValue(dealer)
     checkBlackJack(player, dealer)
+    messageEl.textContent = `$ ${bankRoll}`
+
 }
 
 function checkBlackJack(player, dealer) {
     if (player.value === 21 && dealer.value !== 21) {
         console.log("BlackJack Player Won 1.5")
+        return bankRoll = bankRoll - credit + (credit + 30)
+
     } else if (dealer.value === 21 && player.value !== 21) {
         console.log("BlackJack Dealer")
+        return bankRoll = bankRoll - credit + (credit - 20)
 
     } else if (dealer.value === 21 && player.value === 21) {
         console.log("BJ Push")
+        return bankRoll = bankRoll - credit + (credit + 20)
+
     }
 
 }
@@ -115,32 +128,36 @@ function hit() {
 function choosingWinner(player, dealer) {
     if (player > dealer && player <= 21) {
         console.log('Player has won')
+        return bankRoll = bankRoll - credit + (credit + 20)
     }
 
     else if (dealer > player && dealer <= 21) {
         console.log('Dealer has won')
+        return bankRoll = bankRoll - credit + (credit - 20)
     }
 
     else if (dealer === 21 && player !== 21) {
         console.log('Dealer won')
+        return bankRoll = bankRoll - credit + (credit - 20)
     }
 
     else if (player === 21 && dealer !== 21) {
         console.log('Player won')
+        return bankRoll = bankRoll - credit + (credit + 40)
     }
 
     else if (dealer === player) {
         console.log('Push')
+        return bankRoll = bankRoll - credit + (credit + 20)
     }
     else if (dealer > 21 && player < 21) {
         console.log('Dealer busted')
+        return bankRoll = bankRoll - credit + (credit + 40)
     }
-
 }
 
 function handleClick(e) {
     let buttonClicked = e.target.id
-
     if ('stand' === buttonClicked) {
         console.log('Player Stands')
         dealerTurn()
@@ -151,6 +168,7 @@ function handleClick(e) {
     }
     if ('double' === buttonClicked) {
         console.log('User doubled')
+        
         hit()
         dealerTurn()
     }
