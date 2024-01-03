@@ -1,12 +1,11 @@
-messageEl = document.getElementById('message')
-
-
+const messageBr = document.querySelector('.messageBr')
+const messageEl = document.querySelector('.messageEl')
 
 const suits = ['Hearts', 'Spades', 'Diamonds', 'Clubs']
 const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 const deck = [];
 let bankRoll = 100
-let credit = 0
+let credit = 20
 // const playerHand = [];
 // const dealerHand = [];
 // let playerValue = 0;
@@ -24,18 +23,17 @@ let dealer = {
 }
 startGame()
 
-
 function startGame() {
     createDeck()
     shuffle()
     deal()
 }
 
-
 eventBtn = document.querySelector('.buttons')
 
 eventBtn.addEventListener('click', handleClick)
 
+messageBr.textContent = `$ ${bankRoll}`
 
 
 function createDeck() {
@@ -60,21 +58,15 @@ function checkValue(user) {
                 user.value += 1
             }
         }
-
         if (card.includes('J') || card.includes('Q') || card.includes('K') || card.includes('10')) {
             user.value += 10;
         }
-
         if (number >= 2 && number <= 9) {
             user.value += number
         }
-
-
-
     })
     return user.value
 }
-
 
 function shuffle() {
     for (let i = 0; i < deck.length; i++) {
@@ -97,23 +89,22 @@ function deal() {
     checkValue(player)
     checkValue(dealer)
     checkBlackJack(player, dealer)
-    messageEl.textContent = `$ ${bankRoll}`
-
+    bankRoll -= 20
 }
 
 function checkBlackJack(player, dealer) {
     if (player.value === 21 && dealer.value !== 21) {
         console.log("BlackJack Player Won 1.5")
-        return bankRoll = bankRoll - credit + (credit + 30)
-
+        messageEl.textContent = "BlackJack Player Won 1.5"
+        return bankRoll += 55
     } else if (dealer.value === 21 && player.value !== 21) {
         console.log("BlackJack Dealer")
-        return bankRoll = bankRoll - credit + (credit - 20)
-
+        messageEl.textContent = "BlackJack Dealer"
+        return
     } else if (dealer.value === 21 && player.value === 21) {
         console.log("BJ Push")
-        return bankRoll = bankRoll - credit + (credit + 20)
-
+        messageEl.textContent = 'BlackJack, Push'
+        return
     }
 
 }
@@ -122,38 +113,47 @@ function hit() {
     let newCard = player.hand.push(deck.pop())
     console.log(`You got ${player.hand[newCard - 1]}`)
     console.log(` Current hand :${player.hand}`)
+    bankRoll -= 20
     checkValue(player)
+
 }
 
 function choosingWinner(player, dealer) {
     if (player > dealer && player <= 21) {
         console.log('Player has won')
-        return bankRoll = bankRoll - credit + (credit + 20)
+        messageEl.textContent = 'Player Won'
+        return bankRoll += 40
     }
 
     else if (dealer > player && dealer <= 21) {
         console.log('Dealer has won')
-        return bankRoll = bankRoll - credit + (credit - 20)
+        messageEl.textContent = 'Dealer Won'
+        return
+
     }
 
     else if (dealer === 21 && player !== 21) {
         console.log('Dealer won')
-        return bankRoll = bankRoll - credit + (credit - 20)
+        messageEl.textContent = 'Dealer Won'
+        return
     }
-
     else if (player === 21 && dealer !== 21) {
         console.log('Player won')
-        return bankRoll = bankRoll - credit + (credit + 40)
+        messageEl.textContent = 'Player Won'
+        return bankRoll += 40
     }
-
     else if (dealer === player) {
         console.log('Push')
-        return bankRoll = bankRoll - credit + (credit + 20)
+        messageEl.textContent = 'Push'
+
+        return bankRoll += 20
     }
     else if (dealer > 21 && player < 21) {
         console.log('Dealer busted')
-        return bankRoll = bankRoll - credit + (credit + 40)
+        messageEl.textContent = 'Dealer Bust'
+        return bankRoll += 40
     }
+    return bankRoll
 }
 
 function handleClick(e) {
@@ -168,12 +168,12 @@ function handleClick(e) {
     }
     if ('double' === buttonClicked) {
         console.log('User doubled')
-        
+
         hit()
         dealerTurn()
     }
     if ('surrender' === buttonClicked)
-        console.log('player surrendered returned half the money')
+        return bankRoll += 10
 }
 
 function dealerTurn() {
@@ -208,3 +208,4 @@ function getImage(user) {
 
 let dealerbox = document.querySelector('.dealer')
 let playerbox = document.querySelector('.player')
+
