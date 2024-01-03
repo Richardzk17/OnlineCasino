@@ -9,11 +9,7 @@ const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'
 const deck = [];
 let bankRoll = 100
 let credit = 20
-// const playerHand = [];
-// const dealerHand = [];
-// let playerValue = 0;
-// let dealerValue = 0;
-
+let turn = true
 
 let player = {
     value: 0,
@@ -117,6 +113,9 @@ function checkBlackJack(player, dealer) {
 }
 
 function hit() {
+
+    if(turn === true) {
+
     let newCard = player.hand.push(deck.pop())
     console.log(`You got ${player.hand[newCard - 1]}`)
     console.log(` Current hand :${player.hand}`)
@@ -129,7 +128,8 @@ function hit() {
     card.src = `images/${player.hand[player.count]}.svg`
     card.classList.add('card')
     playerbox.append(card)
-
+    }
+    else return
 
 
 }
@@ -176,6 +176,7 @@ function handleClick(e) {
     let buttonClicked = e.target.id
     if ('stand' === buttonClicked) {
         console.log('Player Stands')
+        turn = false
         dealerTurn()
     }
     if ('hit' === buttonClicked) {
@@ -184,11 +185,12 @@ function handleClick(e) {
     }
     if ('double' === buttonClicked) {
         console.log('User doubled')
-
         hit()
+        turn = false
         dealerTurn()
     }
     if ('surrender' === buttonClicked)
+        turn = false
         return bankRoll += 10
 }
 
