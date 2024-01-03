@@ -1,6 +1,9 @@
 const messageBr = document.querySelector('.messageBr')
 const messageEl = document.querySelector('.messageEl')
 
+let dealerbox = document.querySelector('.dealer')
+let playerbox = document.querySelector('.player')
+
 const suits = ['Hearts', 'Spades', 'Diamonds', 'Clubs']
 const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 const deck = [];
@@ -14,12 +17,14 @@ let credit = 20
 
 let player = {
     value: 0,
-    hand: []
+    hand: [],
+    count: 1
 }
 
 let dealer = {
     value: 0,
-    hand: []
+    hand: [],
+    count: 1
 }
 startGame()
 
@@ -90,6 +95,8 @@ function deal() {
     checkValue(dealer)
     checkBlackJack(player, dealer)
     bankRoll -= 20
+    getImage(dealer)
+    getImage(player)
 }
 
 function checkBlackJack(player, dealer) {
@@ -115,6 +122,15 @@ function hit() {
     console.log(` Current hand :${player.hand}`)
     bankRoll -= 20
     checkValue(player)
+
+
+    player.count += 1;
+    let card = document.createElement('img')
+    card.src = `images/${player.hand[player.count]}.svg`
+    card.classList.add('card')
+    playerbox.append(card)
+
+
 
 }
 
@@ -181,6 +197,12 @@ function dealerTurn() {
     while (dealer.value <= 16) {
         dealer.hand.push(deck.pop())
         checkValue(dealer)
+        dealer.count += 1;
+        let card = document.createElement('img')
+        card.src = `images/${dealer.hand[dealer.count]}.svg`
+        card.classList.add('card')
+        dealerbox.append(card)
+    
     }
     return choosingWinner(player.value, dealer.value)
 
@@ -206,6 +228,4 @@ function getImage(user) {
     }
 }
 
-let dealerbox = document.querySelector('.dealer')
-let playerbox = document.querySelector('.player')
 
