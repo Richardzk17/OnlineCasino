@@ -3,6 +3,8 @@
 <img width="1440" alt="BlackJack" src="https://github.com/Richardzk17/OnlineCasino/assets/112830334/97db984f-f533-443e-b22d-ad0b2858af8d">
 <img width="1440" alt="SlotMachine" src="https://github.com/Richardzk17/OnlineCasino/assets/112830334/1e390ed7-8ad8-48bd-813e-af4cb2de3a5b">
 
+[**Link To Game**](https://onlinecasinoworld.netlify.app/indexslot)
+
 ## Technologies Used 👨‍💻
 
 * JavaScript
