@@ -1,0 +1,151 @@
+body {
+    margin: 0;
+    background-color: #031e7e;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cg fill='%23000000' fill-opacity='0.07'%3E%3Cpath fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+    border: gold outset 10px;
+}
+
+.container2 {
+    display: flex;
+    margin-top: 10px;
+}
+
+.reel {
+    font-family: sans-serif;
+    font-size: 48px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: inset 5px 5px 20px 2px rgba(20, 19, 19, 0.776);
+    height: 150px;
+    width: 100px;
+    border: 10px ridge #0e0d0d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+button,
+.message {
+    margin-bottom: 30%;
+    margin-right: 15px;
+}
+
+.message {
+    border: rgb(55, 55, 55) solid 1px;
+    width: 65px;
+    height: 30px;
+    font-size: 18px;
+    text-align: center;
+    line-height: 1.6em;
+    background-color: white;
+    justify-items: center;
+    border-radius: 5px;
+    box-shadow: inset 5px 5px 20px 2px rgba(110, 110, 110, 0.65);
+    border: solid 2px purple;
+    animation: 4s infinite glow;
+}
+
+.title {
+    font-size: 48px;
+    color: red;
+    width: 300px;
+    height: 50px;
+    background-color: rgb(226, 226, 226);
+    text-align: center;
+    border-radius: 20px;
+    margin-top: 8%;
+
+
+}
+
+.title {
+    border: 10px dotted red;
+    outline-offset: 20px;
+    box-shadow: inset 5px 5px 29px 8px rgba(232, 232, 111, 0.898);
+    animation: 4s infinite glow;
+}
+
+@keyframes glow {
+    0% {
+        border-color: red;
+    }
+
+    25% {
+        border-color: blue;
+    }
+
+    75% {
+        border-color: yellow;
+    }
+
+    100% {
+        border-color: purple;
+    }
+}
+
+
+.btnReset {
+    height: 30px;
+    width: 65px;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+    background-color: #d42714;
+    border-radius: 10px;
+    box-shadow: 0 4px #cb3f3f;
+    animation: 4s infinite glow;
+}
+
+.btnReset:hover {
+    background-color: #ce2525
+}
+
+.btnReset:active {
+    background-color: #c8220f;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.btnSpin {
+    height: 30px;
+    width: 65px;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+    background-color: #0ab812;
+    border-radius: 10px;
+    box-shadow: 0 4px #8fe049;
+    animation: 4s infinite glow;
+}
+
+.btnSpin:hover {
+    background-color: #31da34
+}
+
+.btnSpin:active {
+    background-color: #039523;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+img {
+    height: 90px;
+    width: 90px;
+    margin-right: 1340px;
+    margin-top: 10px;
+}

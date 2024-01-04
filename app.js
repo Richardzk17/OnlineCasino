@@ -1,5 +1,6 @@
 const messageBr = document.querySelector('.messageBr')
 const messageEl = document.querySelector('.messageEl')
+const dealBtn = document.getElementById('deal')
 
 let dealerbox = document.querySelector('.dealer')
 let playerbox = document.querySelector('.player')
