@@ -53,6 +53,7 @@ function winCombo() {
     } else if (slots[0] === slots[1] && slots[0] === slots[2]) {
         reel1.style.background = 'gold'
         reel2.style.background = 'gold'
+        reel3.style.background = 'gold'
         return bankRoll += credit * (symbols.indexOf(slots[0]) * 5 ) 
     } 
 
