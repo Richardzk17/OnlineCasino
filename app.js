@@ -107,7 +107,7 @@ function checkBlackJack(player, dealer) {
         return
     } else if (dealer.value === 21 && player.value === 21) {
         console.log("BJ Push")
-        messageEl.textContent = 'BlackJack, Push'
+        messageEl.textContent = "BlackJack, Push"
         return
     }
 
@@ -138,36 +138,36 @@ function hit() {
 function choosingWinner(player, dealer) {
     if (player > dealer && player <= 21) {
         console.log('Player has won')
-        messageEl.textContent = 'Player Won'
+        messageEl.textContent = "Player Won"
         return bankRoll += 40
     }
 
     else if (dealer > player && dealer <= 21) {
         console.log('Dealer has won')
-        messageEl.textContent = 'Dealer Won'
+        messageEl.textContent = "Dealer Won"
         return
 
     }
 
     else if (dealer === 21 && player !== 21) {
         console.log('Dealer won')
-        messageEl.textContent = 'Dealer Won'
+        messageEl.textContent = "Dealer Won"
         return
     }
     else if (player === 21 && dealer !== 21) {
         console.log('Player won')
-        messageEl.textContent = 'Player Won'
+        messageEl.textContent = "Player Won"
         return bankRoll += 40
     }
     else if (dealer === player) {
         console.log('Push')
-        messageEl.textContent = 'Push'
+        messageEl.textContent = "Push"
 
         return bankRoll += 20
     }
     else if (dealer > 21 && player < 21) {
         console.log('Dealer busted')
-        messageEl.textContent = 'Dealer Bust'
+        messageEl.textContent = "Dealer Bust"
         return bankRoll += 40
     }
     return bankRoll

@@ -143,9 +143,11 @@ button,
     transform: translateY(4px);
 }
 
+.image {
+    align-self: flex-start;
+}
+
 img {
     height: 90px;
     width: 90px;
-    margin-right: 1340px;
-    margin-top: 10px;
 }
