@@ -1,16 +1,14 @@
 const reel1 = document.getElementById('reel1')
 const reel2 = document.getElementById('reel2')
 const reel3 = document.getElementById('reel3')
+
 spinBtn = document.getElementById('spin')
 resetBtn = document.getElementById('reset')
 messageEl = document.getElementById('message')
 
-
-
 let symbols = ['🍎', '🍋', '🍒', '💎', '🍊', '🔔', '🍀', '🍇']
-let bankRoll = 50
 let credit = 1
-let stop = false
+let bankRoll = 50
 
 spinBtn.addEventListener('click', handleClick)
 resetBtn.addEventListener('click', render)
@@ -70,15 +68,5 @@ function render() {
     messageEl.textContent = '$ 50'
 }
 
-// let animation = setInterval(function() {
-//     reel1.textContent = slots[0]
-//     reel2.textContent = slots[1]
-//     reel3.textContent = slots[2]
-    
-//     if(stop) {
-//         clearInterval(animation)
-//         spin()
-//     }
 
-// }, 100)
 
