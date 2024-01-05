@@ -18,7 +18,7 @@ I wanted to create a space where people could have a blast playing these games j
 
 ## Credit 
 
-* [**Flaticon**](https://cdn-icons-png.flaticon.com/512/10553/10553491.png)
+* [**Flaticon**](flaticon.com/)
 * [**Favion.io**](https://favicon.io/)
 
 ## Attributions
