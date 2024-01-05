@@ -95,6 +95,7 @@ function deal() {
         credit = 20
         bankRoll -= credit
         messageBr.innerText = bankRoll.toString()
+        messageEl.textContent = "BlackJack"
         doubled = false
         turn = true
         surrender = false
@@ -122,9 +123,6 @@ function deal() {
             getImage(player)
         }
     }
-    else {
-        let reset = document.createElement('button')
-    }
 }
 
 function checkBlackJack(player, dealer) {
@@ -144,7 +142,6 @@ function checkBlackJack(player, dealer) {
         dealt = false
         return
     }
-
 }
 
 function hit() {
@@ -169,40 +166,38 @@ function choosingWinner(player, dealer) {
     turn = false
     if (doubled === true) {
         credit = credit * 2
-    }
-
-    if (player > dealer && player <= 21) {
+    } if (player > dealer && player <= 21) {
         messageEl.textContent = "Player Won"
         bankRoll += credit + 20
         messageBr.innerText = bankRoll.toString()
         return
-
-    }
-    else if (dealer > player && dealer <= 21) {
+    } else if (dealer > player && dealer <= 21) {
         messageEl.textContent = "Dealer Won"
         return
-    }
-    else if (dealer === 21 && player !== 21) {
+    } else if (dealer === 21 && player !== 21) {
         messageEl.textContent = "Dealer Won"
         return
-    }
-    else if (player === 21 && dealer !== 21) {
+    } else if (player === 21 && dealer !== 21) {
         messageEl.textContent = "Player Won"
         bankRoll += credit + 20
         messageBr.innerText = bankRoll.toString()
         return
-    }
-    else if (dealer === player) {
+    } else if (dealer === player) {
         messageEl.textContent = "Push"
         bankRoll += credit + 20
         messageBr.innerText = bankRoll.toString()
         return
-    }
-    else if (dealer > 21 && player < 21) {
+    } else if (dealer > 21 && player < 21) {
         messageEl.textContent = "Dealer Bust"
         bankRoll += credit + 20
         messageBr.innerText = bankRoll.toString()
         return
+    } else if (player > 21) {
+        messageEl.textContent = "Player Bust"
+    } else if (dealer > 21) {
+        messageEl.textContent = "Dealer Bust"
+        bankRoll += credit + 20;
+        messageBr.innerText = bankRoll.toString()
     }
 }
 
@@ -235,6 +230,7 @@ function handleClick(e) {
         if (surrender === false) {
             bankRoll += credit - 10
             messageBr.innerText = bankRoll.toString()
+            messageEl.textContent = "Surrender"
             turn = false
             dealt = false
             surrender = true
@@ -277,7 +273,6 @@ function getImage(user) {
     if (user === dealer) {
         dealerbox.append(img)
 
-
         let hiddenCard = document.createElement('img')
         hiddenCard.src = `images/backs/tot.png`
         hiddenCard.classList.add('card')
@@ -291,7 +286,6 @@ function getImage(user) {
     }
 }
 
-
 function clean() {
     while (playerbox.firstChild) {
         playerbox.removeChild(playerbox.firstChild);
@@ -300,7 +294,6 @@ function clean() {
         dealerbox.removeChild(dealerbox.firstChild);
     }
 }
-
 
 function reset() {
     bankRoll = 100

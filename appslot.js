@@ -13,7 +13,6 @@ let bankRoll = 50
 spinBtn.addEventListener('click', handleClick)
 resetBtn.addEventListener('click', render)
 
-
 function randomSymbol() {
     return symbols[Math.floor(Math.random() * symbols.length)]
 }
@@ -27,16 +26,12 @@ function spin() {
     reel3.style.background = 'white'
     for (let i = 0; i < 3; i++) {
         slots.push(randomSymbol())
-
     }
-
     winCombo()
     messageEl.textContent = `$ ${bankRoll}`
     console.log(slots)
     console.log(bankRoll)
 }
-
-
 
 function winCombo() {
     reel1.textContent = slots[0]
@@ -67,6 +62,3 @@ function render() {
     bankRoll = 50
     messageEl.textContent = '$ 50'
 }
-
-
-
