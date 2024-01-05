@@ -52,9 +52,14 @@ function winCombo() {
 }
 
 function handleClick() {
-    if (bankRoll <= 0) {
+    if (bankRoll > 50) {
+        messageEl.style.color = 'green'
+    } if (bankRoll <= 25){
+        messageEl.style.color = 'orange'
+    } if (bankRoll <= 0) {
+        messageEl.style.color = 'red'
         return 
-    }
+    } 
     spin()
 }
 

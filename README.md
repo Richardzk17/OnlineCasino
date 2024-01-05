@@ -21,7 +21,7 @@ I wanted to create a space where people could have a blast playing these games j
 * [**Flaticon**](flaticon.com/)
 * [**Favion.io**](https://favicon.io/)
 
-## Attributions
+## Planning
 * [Planning](https://docs.google.com/document/d/1mb_t5Tz7_YFRKpnxkL8BnP6cc1b4swOmfKm_LsorSz4/edit?pli=1)
 
 ### Ice Box 🥶
