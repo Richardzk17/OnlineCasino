@@ -3,7 +3,7 @@
 <img width="1440" alt="BlackJack" src="https://github.com/Richardzk17/OnlineCasino/assets/112830334/97db984f-f533-443e-b22d-ad0b2858af8d">
 <img width="1440" alt="SlotMachine" src="https://github.com/Richardzk17/OnlineCasino/assets/112830334/1e390ed7-8ad8-48bd-813e-af4cb2de3a5b">
 
-Onlinecasinoworld. It's all about bringing back the classic slot machine and blackjack games we all love from online casinos, but without the stress of losing real money.
+Onlinecasinoworld - It's all about bringing back the classic slot machine and blackjack games we all love from online casinos, but without the stress of losing real money.
 
 I wanted to create a space where people could have a blast playing these games just for fun, you know? So, on this platform, players can dive into these classic games and get that casino vibe without worrying about their wallets.
 
@@ -20,6 +20,9 @@ I wanted to create a space where people could have a blast playing these games j
 
 * [**Flaticon**](https://cdn-icons-png.flaticon.com/512/10553/10553491.png)
 * [**Favion.io**](https://favicon.io/)
+
+## Attributions
+* [Planning](https://docs.google.com/document/d/1mb_t5Tz7_YFRKpnxkL8BnP6cc1b4swOmfKm_LsorSz4/edit?pli=1)
 
 ### Ice Box 🥶
 

@@ -1,6 +1,8 @@
-const messageBr = document.querySelector('.messageBr')
+const messageBr = document.getElementById('messageBr')
 const messageEl = document.querySelector('.messageEl')
 const dealBtn = document.getElementById('deal')
+
+messageBr.innerText
 
 let dealerbox = document.querySelector('.dealer')
 let playerbox = document.querySelector('.player')
@@ -28,7 +30,7 @@ let dealer = {
 dealBtn.addEventListener('click', deal)
 eventBtn = document.querySelector('.buttons')
 eventBtn.addEventListener('click', handleClick)
-messageBr.textContent = `$ ${bankRoll}`
+
 
 function render(user) {
     user.value = 0
@@ -86,34 +88,41 @@ function shuffle() {
 }
 
 function deal() {
-    if (dealt === false) {
-        render(dealer)
-        render(player)
-        while (playerbox.firstChild) {
-            playerbox.removeChild(playerbox.firstChild);
+    if (bankRoll > credit) {
+        bankRoll -= credit
+        messageBr.innerText = bankRoll.toString()
+
+        if (dealt === false) {
+            render(dealer)
+            render(player)
+            while (playerbox.firstChild) {
+                playerbox.removeChild(playerbox.firstChild);
+            }
+            while (dealerbox.firstChild) {
+                dealerbox.removeChild(dealerbox.firstChild);
+            }
+            dealt = true
+            player.hand.push(deck.pop())
+            dealer.hand.push(deck.pop())
+            player.hand.push(deck.pop())
+            dealer.hand.push(deck.pop())
+            checkValue(player)
+            checkValue(dealer)
+            checkBlackJack(player, dealer)
+            getImage(dealer)
+            getImage(player)
         }
-        while (dealerbox.firstChild) {
-            dealerbox.removeChild(dealerbox.firstChild);
-        }
-        dealt = true
-        player.hand.push(deck.pop())
-        dealer.hand.push(deck.pop())
-        player.hand.push(deck.pop())
-        dealer.hand.push(deck.pop())
-        checkValue(player)
-        checkValue(dealer)
-        checkBlackJack(player, dealer)
-        bankRoll -= 20
-        getImage(dealer)
-        getImage(player)
     }
+    else return
 }
 
 function checkBlackJack(player, dealer) {
     if (player.value === 21 && dealer.value !== 21) {
         console.log("BlackJack Player Won 1.5")
-        messageEl.textContent = "BlackJack Player Won 1.5"
-        return bankRoll += 55
+        bankRoll += credit * 2.5
+        messageBr.innerText = bankRoll.toString()
+        return
+
     } else if (dealer.value === 21 && player.value !== 21) {
         console.log("BlackJack Dealer")
         messageEl.textContent = "BlackJack Dealer"
@@ -133,7 +142,7 @@ function hit() {
         let newCard = player.hand.push(deck.pop())
         console.log(`You got ${player.hand[newCard - 1]}`)
         console.log(` Current hand :${player.hand}`)
-        bankRoll -= 20
+        bankRoll -= credit
         checkValue(player)
 
 
@@ -154,7 +163,10 @@ function choosingWinner(player, dealer) {
     if (player > dealer && player <= 21) {
         console.log('Player has won')
         messageEl.textContent = "Player Won"
-        return bankRoll += 40
+        bankRoll += credit + 20
+        messageBr.innerText = bankRoll.toString()
+        return
+
     }
     else if (dealer > player && dealer <= 21) {
         console.log('Dealer has won')
@@ -169,17 +181,24 @@ function choosingWinner(player, dealer) {
     else if (player === 21 && dealer !== 21) {
         console.log('Player won')
         messageEl.textContent = "Player Won"
-        return bankRoll += 40
+        bankRoll += credit + 20
+        messageBr.innerText = bankRoll.toString()
+        return
     }
     else if (dealer === player) {
         console.log('Push')
         messageEl.textContent = "Push"
-        return bankRoll += 20
+        bankRoll += credit + 20
+        messageBr.innerText = bankRoll.toString()
+        return
     }
     else if (dealer > 21 && player < 21) {
         console.log('Dealer busted')
         messageEl.textContent = "Dealer Bust"
-        return bankRoll += 40
+        bankRoll += credit + 20
+        messageBr.innerText = bankRoll.toString()
+        return
+
     }
     return bankRoll
 }
@@ -190,23 +209,36 @@ function handleClick(e) {
         console.log('Player Stands')
         turn = false
         dealerTurn()
+        choosingWinner(player.value)
     }
     if ('hit' === buttonClicked) {
         hit()
-
+        if (player.value > 21) {
+            choosingWinner(player.value)
+        }
     }
     if ('double' === buttonClicked) {
         console.log('User doubled')
+        credit += credit
         hit()
         turn = false
         dealerTurn()
     }
     if ('surrender' === buttonClicked)
         turn = false
-    return bankRoll += 10
+        bankRoll += credit / 2
+        // messageBr.innerText = bankRoll.toString()
+        return
+
 }
 
 function dealerTurn() {
+
+    let secondCard = document.createElement('img')
+    secondCard.src = `images/${dealer.hand[1]}.svg`
+    secondCard.classList.add('card')
+
+    dealerbox.append(secondCard)
     checkValue(dealer)
     while (dealer.value <= 16) {
         dealer.hand.push(deck.pop())
@@ -231,7 +263,8 @@ function getImage(user) {
 
     if (user === dealer) {
         dealerbox.append(img)
-        dealerbox.append(img2)
+        // dealerbox.append(img2)
+
     }
     if (user === player) {
         playerbox.append(img)

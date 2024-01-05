@@ -10,7 +10,7 @@ messageEl = document.getElementById('message')
 let symbols = ['🍎', '🍋', '🍒', '💎', '🍊', '🔔', '🍀', '🍇']
 let bankRoll = 50
 let credit = 1
-let stop
+let stop = false
 
 spinBtn.addEventListener('click', handleClick)
 resetBtn.addEventListener('click', render)
@@ -36,7 +36,6 @@ function spin() {
     messageEl.textContent = `$ ${bankRoll}`
     console.log(slots)
     console.log(bankRoll)
-
 }
 
 
@@ -71,25 +70,15 @@ function render() {
     messageEl.textContent = '$ 50'
 }
 
-
-
-
-
-
-
-
-
-
 // let animation = setInterval(function() {
 //     reel1.textContent = slots[0]
 //     reel2.textContent = slots[1]
 //     reel3.textContent = slots[2]
     
-//     if(stop === !stop ) {
+//     if(stop) {
 //         clearInterval(animation)
 //         spin()
 //     }
 
 // }, 100)
 
-//https://www.codingcreativo.it/en/javascript-slot-machine/
